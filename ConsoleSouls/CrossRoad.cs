@@ -4,11 +4,13 @@ using Microsoft.Xna.Framework;
 
 namespace ConsoleSouls
 {
-    internal sealed class CrossRoad : IDrawContent
+    internal sealed class CrossRoad : IScene
     {
         [NotNull] internal Room Room1 { get; }
         [NotNull] internal Room Room2 { get; }
         [NotNull] internal Room Room3 { get; }
+
+        public bool IsCompleted { get; }
 
         public void OnUpdate(GameTime gameTime)
         {
@@ -22,6 +24,12 @@ namespace ConsoleSouls
             Room1 = room1 ?? throw new ArgumentNullException(nameof(room1));
             Room2 = room2 ?? throw new ArgumentNullException(nameof(room2));
             Room3 = room3 ?? throw new ArgumentNullException(nameof(room3));
+        }
+
+        [NotNull]
+        internal static CrossRoad Generate(int currentStage)
+        {
+            return new CrossRoad(null, null, null);
         }
     }
 }

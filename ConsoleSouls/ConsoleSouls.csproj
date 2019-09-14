@@ -93,6 +93,7 @@
     <Compile Include="Enums.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="IDrawContent.cs" />
+    <Compile Include="IScene.cs" />
     <Compile Include="LevelValue.cs" />
     <Compile Include="MoveController.cs" />
     <Compile Include="Player.cs" />

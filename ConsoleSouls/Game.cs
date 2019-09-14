@@ -1,4 +1,4 @@
-﻿using System;
+﻿using JetBrains.Annotations;
 using Microsoft.Xna.Framework;
 
 namespace ConsoleSouls
@@ -6,10 +6,17 @@ namespace ConsoleSouls
     internal class Game : IDrawContent
     {
         private int _currentStage = 1;
+        private IScene _currentScene;
 
-        public void OnUpdate(GameTime gameTime)
+        internal Game()
         {
-            
+            _currentScene = CrossRoad.Generate(_currentStage);
+        }
+
+        public void OnUpdate([NotNull] GameTime gameTime)
+        {
+            if(!_currentScene.IsCompleted)
+                _currentScene.OnUpdate(gameTime);
         }
     }
 }
