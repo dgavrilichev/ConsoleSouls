@@ -90,6 +90,7 @@
     <Compile Include="CrossRoad.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="EnemyRoom.cs" />
+    <Compile Include="Enums.cs" />
     <Compile Include="IDrawContent.cs" />
     <Compile Include="LevelValue.cs" />
     <Compile Include="MoveController.cs" />
