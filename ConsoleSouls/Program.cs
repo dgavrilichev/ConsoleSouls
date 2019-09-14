@@ -7,6 +7,7 @@ namespace ConsoleSouls
     class Program
     {
 
+
         public const int Width = 80;
         public const int Height = 25;
 

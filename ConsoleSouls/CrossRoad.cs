@@ -1,7 +1,6 @@
 ﻿namespace ConsoleSouls
 {
-    internal sealed class RoomType
+    internal sealed class CrossRoad
     {
-
     }
 }
