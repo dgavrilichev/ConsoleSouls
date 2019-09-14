@@ -1,15 +1,11 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using SadConsole.Readers;
-
-namespace ConsoleSouls
+﻿namespace ConsoleSouls
 {
-    class Program
+    internal static class Program
     {
-        public const int Width = 128;
-        public const int Height = 48;
+        private const int Width = 128;
+        private const int Height = 48;
 
-        static void Main(string[] args)
+        private static void Main()
         {
             // Setup the engine and create the main window.
             SadConsole.Game.Create(Width, Height);
@@ -24,9 +20,8 @@ namespace ConsoleSouls
 
         private static void Init()
         {
-            // Any startup code for your game. We will use an example console for now
-            var startingConsole = SadConsole.Global.CurrentScreen;
-            startingConsole.FillWithRandomGarbage();
+            var game = new Game();
+            SadConsole.Game.OnUpdate = game.OnUpdate;
         }
     }
 }

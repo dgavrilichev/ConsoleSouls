@@ -91,6 +91,7 @@
     <Compile Include="Enemy.cs" />
     <Compile Include="EnemyRoom.cs" />
     <Compile Include="Enums.cs" />
+    <Compile Include="Game.cs" />
     <Compile Include="IDrawContent.cs" />
     <Compile Include="LevelValue.cs" />
     <Compile Include="MoveController.cs" />
