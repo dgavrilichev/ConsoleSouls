@@ -22,7 +22,7 @@ namespace ConsoleSouls
 
         static CrossRoad()
         {
-            Title.Foreground = Color.DarkTurquoise;
+            Title.Foreground = Color.Gold;
             Title.Location = new Point(14, 0);
         }
 
