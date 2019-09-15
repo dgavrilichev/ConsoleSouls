@@ -61,6 +61,19 @@ namespace ConsoleSouls {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to    ___  _                                                            .                                      
+        /// .&apos;   \ /        __.    __.    ____   ___       , __     ___  _  .- _/_        .___    __.    __.  , _ , _  
+        /// |      |,---. .&apos;   \ .&apos;   \  (     .&apos;   `      |&apos;  `. .&apos;   `  \,&apos;   |         /   \ .&apos;   \ .&apos;   \ |&apos; `|&apos; `.
+        /// |      |&apos;   ` |    | |    |  `--.  |----&apos;      |    | |----&apos;  /\    |         |   &apos; |    | |    | |   |   |
+        ///  `.__, /    |  `._.&apos;  `._.&apos; \___.&apos; `.___,      /    | `.___, /  \   \__ [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string CrossRoadTitle {
+            get {
+                return ResourceManager.GetString("CrossRoadTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to          ..:::::::::..
         ///       :::::::::::::::::
         ///     .::::::/&apos;&apos;&apos;&apos;&apos;\::::::.

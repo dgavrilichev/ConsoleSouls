@@ -3,7 +3,7 @@
     internal static class Program
     {
         private const int Width = 128;
-        private const int Height = 48;
+        private const int Height = 52;
 
         private static void Main()
         {

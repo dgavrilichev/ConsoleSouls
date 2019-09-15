@@ -10,7 +10,7 @@ namespace ConsoleSouls
     {
         private static readonly List<string> Look = Regex.Split(Res.Room, "\r\n|\r|\n").ToList();
 
-        private EnemyRoom([NotNull] Actor actor) : base(actor)
+        private EnemyRoom([NotNull] Actor actor, char key) : base(actor, key)
         {
 
         }
@@ -18,14 +18,17 @@ namespace ConsoleSouls
         public override void OnUpdate(GameTime gameTime)
         {
             Actor.OnUpdate(gameTime);
+            DrawEntrance();
         }
-
-
+    
         [NotNull]
-        internal static Room Create(int currentStage)
+        internal static Room Create(int currentStage, char key)
         {
-            var actor = new Actor(Look);
-            return new EnemyRoom(actor);
+            var actor = new Actor(Look)
+            {
+                Foreground = Color.Gray,
+            };
+            return new EnemyRoom(actor, key);
         }
     }
 }
