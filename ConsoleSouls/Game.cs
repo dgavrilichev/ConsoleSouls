@@ -1,4 +1,5 @@
-﻿using JetBrains.Annotations;
+﻿using System.Text;
+using JetBrains.Annotations;
 using Microsoft.Xna.Framework;
 
 namespace ConsoleSouls
@@ -15,7 +16,7 @@ namespace ConsoleSouls
 
         public void OnUpdate([NotNull] GameTime gameTime)
         {
-            if(!_currentScene.IsCompleted)
+            if (!_currentScene.IsCompleted)
                 _currentScene.OnUpdate(gameTime);
         }
     }

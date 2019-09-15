@@ -8,6 +8,12 @@ namespace ConsoleSouls
     {
         [NotNull] protected readonly Actor Actor;
 
+        internal Point Location
+        {
+            get => Actor.Location;
+            set => Actor.Location = value;
+        }
+
         protected Room([NotNull] Actor actor)
         {
             Actor = actor ?? throw new ArgumentNullException(nameof(actor));

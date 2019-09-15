@@ -6,6 +6,10 @@ namespace ConsoleSouls
 {
     internal sealed class CrossRoad : IScene
     {
+        private static readonly Point Room1Location = new Point(10, 5);
+        private static readonly Point Room2Location = new Point(45, 5);
+        private static readonly Point Room3Location = new Point(80, 5);
+
         [NotNull] internal Room Room1 { get; }
         [NotNull] internal Room Room2 { get; }
         [NotNull] internal Room Room3 { get; }
@@ -29,7 +33,16 @@ namespace ConsoleSouls
         [NotNull]
         internal static CrossRoad Generate(int currentStage)
         {
-            return new CrossRoad(null, null, null);
+            var room1 = EnemyRoom.Create(currentStage);
+            room1.Location = Room1Location;
+
+            var room2 = EnemyRoom.Create(currentStage);
+            room1.Location = Room2Location;
+
+            var room3 = EnemyRoom.Create(currentStage);
+            room1.Location = Room3Location;
+
+            return new CrossRoad(room1, room2, room3);
         }
     }
 }

@@ -14,9 +14,9 @@ namespace ConsoleSouls
             _look = look ?? throw new ArgumentNullException(nameof(look));
         }
 
-        internal Point Location { get; set; }
-        internal Color Foreground { get; set; }
-        internal Color Background { get; set; }
+        internal Point Location { get; set; } = new Point(0, 0);
+        internal Color Foreground { get; set; } = Color.White;
+        internal Color Background { get; set; } = Color.Black;
 
         public void OnUpdate(GameTime gameTime)
         {
