@@ -107,6 +107,7 @@
       <DependentUpon>Res.resx</DependentUpon>
     </Compile>
     <Compile Include="Room.cs" />
+    <Compile Include="Skill.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
