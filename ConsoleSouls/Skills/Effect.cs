@@ -1,4 +1,4 @@
-﻿namespace ConsoleSouls
+﻿namespace ConsoleSouls.Skills
 {
     internal abstract class Effect
     {

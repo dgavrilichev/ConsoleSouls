@@ -1,4 +1,6 @@
-﻿namespace ConsoleSouls
+﻿using System.Collections.Generic;
+
+namespace ConsoleSouls.Skills
 {
     internal sealed class Skill
     {
@@ -6,5 +8,6 @@
         internal double CastTime { get; }
         internal double Charge1Percent { get; }
         internal double Charge2Percent { get; }
+        internal List<Effect> Effects { get; }
     }
 }

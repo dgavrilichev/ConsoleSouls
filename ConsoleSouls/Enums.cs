@@ -11,4 +11,10 @@ namespace ConsoleSouls
         CrossRoad,
         Combat,
     }
+
+    internal enum EffectSource
+    {
+        Physical,
+        Magical
+    }
 }
