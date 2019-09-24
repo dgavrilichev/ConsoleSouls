@@ -2,9 +2,9 @@
 {
     internal sealed class LevelValue<T>
     {
-        public LevelValue(T current, T maximum)
+        public LevelValue(T maximum)
         {
-            Current = current;
+            Current = maximum;
             Maximum = maximum;
         }
 

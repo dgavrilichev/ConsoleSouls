@@ -2,15 +2,11 @@
 {
     internal class DirectDamageEffect : Effect
     {
-        public DirectDamageEffect(int minDamage, int maxDamage, EffectSource source, string name) : base(name)
+        public DirectDamageEffect(int damage, string name) : base(name)
         {
-            MinDamage = minDamage;
-            MaxDamage = maxDamage;
-            Source = source;
+            Damage = damage;
         }
 
-        internal int MinDamage { get; }
-        internal int MaxDamage { get; }
-        internal EffectSource Source { get; }
+        internal int Damage { get; }
     }
 }
