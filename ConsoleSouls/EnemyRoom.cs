@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using JetBrains.Annotations;
@@ -10,9 +11,11 @@ namespace ConsoleSouls
     {
         private static readonly List<string> Look = Regex.Split(Res.Room, "\r\n|\r|\n").ToList();
 
-        private EnemyRoom([NotNull] Actor actor, char key) : base(actor, key)
-        {
+        [NotNull] internal List<Enemy> Enemies { get; }
 
+        private EnemyRoom([NotNull] Actor actor, char key, [NotNull] List<Enemy> enemies) : base(actor, key)
+        {
+            Enemies = enemies;
         }
 
         public override void OnUpdate(GameTime gameTime)
@@ -22,13 +25,23 @@ namespace ConsoleSouls
         }
     
         [NotNull]
-        internal static Room Create(int currentStage, char key)
+        internal static Room Create(int level, char key)
         {
             var actor = new Actor(Look)
             {
                 Foreground = Color.Gray,
             };
-            return new EnemyRoom(actor, key);
+
+            var rnd = new Random(DateTime.Now.Millisecond + 2345);
+            var enemiesCount = rnd.Next(1, 4);
+
+            var enemies = Enumerable
+                .Range(1, enemiesCount)
+                .ToList()
+                .Select(arg => Enemy.Create(level))
+                .ToList();
+
+            return new EnemyRoom(actor, key, enemies);
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Reflection;
 using ConsoleSouls.Skills;
 using JetBrains.Annotations;
 
@@ -8,7 +7,7 @@ namespace ConsoleSouls
 {
     internal sealed class Enemy
     {
-        private static List<int> _possibleHealth = new List<int>
+        private static readonly List<int> PossibleHealth = new List<int>
         {
             1, 2, 3, 4, 5, 6, 7, 8, 10, 12, 16, 24, 47
         };
@@ -26,7 +25,7 @@ namespace ConsoleSouls
         }
 
         [NotNull]
-        internal Enemy Create(int level)
+        internal static Enemy Create(int level)
         {
             var rnd = new Random(DateTime.Now.Millisecond);
             var randomValue = rnd.Next(0, 3);
@@ -37,7 +36,7 @@ namespace ConsoleSouls
                 case 0:
                    enemy = new Enemy("Skeleton Swordsman");
                    enemy.Level = level;
-                   enemy.Health = new LevelValue<int>(_possibleHealth[rnd.Next(0, Math.Min(6, level / 3))]);
+                   enemy.Health = new LevelValue<int>(PossibleHealth[rnd.Next(0, Math.Min(6, level / 3))]);
                    enemy.Armor = rnd.Next(0, enemy.Health.Maximum + 1);
 
                    //Skills:
@@ -68,7 +67,7 @@ namespace ConsoleSouls
                 case 1:
                     enemy = new Enemy("Bonehound");
                     enemy.Level = level;
-                    enemy.Health = new LevelValue<int>(_possibleHealth[rnd.Next(0, Math.Min(5, level / 4))]);
+                    enemy.Health = new LevelValue<int>(PossibleHealth[rnd.Next(0, Math.Min(5, level / 4))]);
                     enemy.Armor = rnd.Next(0, enemy.Health.Maximum + 1);
 
                     //Skills:
@@ -100,7 +99,7 @@ namespace ConsoleSouls
                 case 2:
                     enemy = new Enemy("Dead Crow");
                     enemy.Level = level;
-                    enemy.Health = new LevelValue<int>(_possibleHealth[rnd.Next(0, Math.Min(5, level / 4))]);
+                    enemy.Health = new LevelValue<int>(PossibleHealth[rnd.Next(0, Math.Min(4, level / 5))]);
                     enemy.Armor = rnd.Next(0, enemy.Health.Maximum + 1);
 
                     //Skills:
