@@ -48,10 +48,10 @@ namespace ConsoleSouls
         private void DrawEnemies()
         {
             var console = Global.CurrentScreen;
-            var (x, y) = new Point(Location.X, Location.Y + Actor.Size.Height + 4);
+            var (x, y) = new Point(Location.X + 4, Location.Y + Actor.Size.Height + 3);
 
 
-            console.Print(x + 8, y, "Enemies:", Color.DarkRed);
+            console.Print(x, y, "Enemies:", Color.DarkRed);
 
             for (var index = 0; index < Enemies.Count; index++)
             {
