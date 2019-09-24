@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using JetBrains.Annotations;
 using Microsoft.Xna.Framework;
+using SadConsole;
 
 namespace ConsoleSouls
 {
@@ -22,8 +23,9 @@ namespace ConsoleSouls
         {
             Actor.OnUpdate(gameTime);
             DrawEntrance();
+            DrawEnemies();
         }
-    
+
         [NotNull]
         internal static Room Create(int level, char key)
         {
@@ -32,8 +34,7 @@ namespace ConsoleSouls
                 Foreground = Color.Gray,
             };
 
-            var rnd = new Random(DateTime.Now.Millisecond + 2345);
-            var enemiesCount = rnd.Next(1, 4);
+            var enemiesCount = Rnd.Get(1, 3);
 
             var enemies = Enumerable
                 .Range(1, enemiesCount)
@@ -42,6 +43,21 @@ namespace ConsoleSouls
                 .ToList();
 
             return new EnemyRoom(actor, key, enemies);
+        }
+
+        private void DrawEnemies()
+        {
+            var console = Global.CurrentScreen;
+            var (x, y) = new Point(Location.X, Location.Y + Actor.Size.Height + 4);
+
+
+            console.Print(x + 8, y, "Enemies:", Color.DarkRed);
+
+            for (var index = 0; index < Enemies.Count; index++)
+            {
+                var enemy = Enemies[index];
+                console.Print(x, y + index + 1, $"{index + 1}) {enemy.Name}", Color.DarkRed);
+            }
         }
     }
 }

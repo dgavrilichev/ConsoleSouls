@@ -110,6 +110,7 @@
     </Compile>
     <Compile Include="Room.cs" />
     <Compile Include="Skills\Skill.cs" />
+    <Compile Include="Rnd.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using ConsoleSouls.Skills;
 using JetBrains.Annotations;
@@ -27,8 +28,7 @@ namespace ConsoleSouls
         [NotNull]
         internal static Enemy Create(int level)
         {
-            var rnd = new Random(DateTime.Now.Millisecond);
-            var randomValue = rnd.Next(0, 3);
+            var randomValue = Rnd.Get(0, 2);
 
             Enemy enemy;
             switch (randomValue)
@@ -36,11 +36,11 @@ namespace ConsoleSouls
                 case 0:
                    enemy = new Enemy("Skeleton Swordsman");
                    enemy.Level = level;
-                   enemy.Health = new LevelValue<int>(PossibleHealth[rnd.Next(0, Math.Min(6, level / 3))]);
-                   enemy.Armor = rnd.Next(0, enemy.Health.Maximum + 1);
+                   enemy.Health = new LevelValue<int>(PossibleHealth[Rnd.Get(0, Math.Min(6, level / 3))]);
+                   enemy.Armor = Rnd.Get(0, enemy.Health.Maximum);
 
                    //Skills:
-                   var baseDamage = rnd.Next(1, level / 5 + 1);
+                   var baseDamage = Rnd.Get(1, level / 5 + 1);
                    var attack1 = new Skill("Sword slash", 8.0, 33.3, 66.6, new List<Effect>
                    {
                        new DirectDamageEffect(baseDamage, "Direct damage")
@@ -67,11 +67,11 @@ namespace ConsoleSouls
                 case 1:
                     enemy = new Enemy("Bonehound");
                     enemy.Level = level;
-                    enemy.Health = new LevelValue<int>(PossibleHealth[rnd.Next(0, Math.Min(5, level / 4))]);
-                    enemy.Armor = rnd.Next(0, enemy.Health.Maximum + 1);
+                    enemy.Health = new LevelValue<int>(PossibleHealth[Rnd.Get(0, Math.Min(5, level / 4))]);
+                    enemy.Armor = Rnd.Get(0, enemy.Health.Maximum);
 
                     //Skills:
-                    baseDamage = rnd.Next(1, level / 8 + 1);
+                    baseDamage = Rnd.Get(1, level / 8 + 1);
                     attack1 = new Skill("Claws", 4.0, 33.3, 66.6, new List<Effect>
                     {
                         new DirectDamageEffect(baseDamage, "Direct damage")
@@ -99,11 +99,11 @@ namespace ConsoleSouls
                 case 2:
                     enemy = new Enemy("Dead Crow");
                     enemy.Level = level;
-                    enemy.Health = new LevelValue<int>(PossibleHealth[rnd.Next(0, Math.Min(4, level / 5))]);
-                    enemy.Armor = rnd.Next(0, enemy.Health.Maximum + 1);
+                    enemy.Health = new LevelValue<int>(PossibleHealth[Rnd.Get(0, Math.Min(4, level / 5))]);
+                    enemy.Armor = Rnd.Get(0, enemy.Health.Maximum);
 
                     //Skills:
-                    baseDamage = rnd.Next(1, level / 8 + 1);
+                    baseDamage = Rnd.Get(1, level / 8 + 1);
                     attack1 = new Skill("Claws", 4.0, 33.3, 66.6, new List<Effect>
                     {
                         new DirectDamageEffect(baseDamage, "Direct damage")
