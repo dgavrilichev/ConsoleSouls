@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using JetBrains.Annotations;
@@ -48,15 +47,15 @@ namespace ConsoleSouls
         private void DrawEnemies()
         {
             var console = Global.CurrentScreen;
-            var (x, y) = new Point(Location.X + 4, Location.Y + Actor.Size.Height + 3);
-
+            var (x, y) = new Point(Location.X , Location.Y + Actor.Size.Height + 3);
 
             console.Print(x, y, "Enemies:", Color.DarkRed);
 
             for (var index = 0; index < Enemies.Count; index++)
             {
                 var enemy = Enemies[index];
-                console.Print(x, y + index + 1, $"{index + 1}) {enemy.Name}", Color.DarkRed);
+                console.Print(x, y + index + 1, $"{index + 1})", Color.DarkRed);
+                console.Print(x + 3, y + index + 1, enemy.Name, new Color(210, 20, 20));
             }
         }
     }
