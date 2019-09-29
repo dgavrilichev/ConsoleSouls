@@ -1,6 +1,6 @@
-﻿using System.Text;
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
 using Microsoft.Xna.Framework;
+using SadConsole;
 
 namespace ConsoleSouls
 {
@@ -16,8 +16,14 @@ namespace ConsoleSouls
 
         public void OnUpdate([NotNull] GameTime gameTime)
         {
+            Global.CurrentScreen.Clear();
+
             if (!_currentScene.IsCompleted)
                 _currentScene.OnUpdate(gameTime);
+            else
+            {
+                _currentScene = CrossRoad.Generate(_currentStage++);
+            }
         }
     }
 }

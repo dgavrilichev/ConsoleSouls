@@ -8,11 +8,6 @@ namespace ConsoleSouls
 {
     internal sealed class Enemy
     {
-        private static readonly List<int> PossibleHealth = new List<int>
-        {
-            1, 2, 3, 4, 5, 6, 7, 8, 10, 12, 16, 24, 47
-        };
-
         internal string Name { get; }
 
         internal int Level { get; set; }
@@ -36,7 +31,7 @@ namespace ConsoleSouls
                 case 0:
                    enemy = new Enemy("Skeleton Swordsman");
                    enemy.Level = level;
-                   enemy.Health = new LevelValue<int>(PossibleHealth[Rnd.Get(0, Math.Min(6, level / 3))]);
+                   enemy.Health = new LevelValue<int>(Rnd.Get(2 + level * 4, Math.Min(60, 7 + level * 5)));
                    enemy.Armor = Rnd.Get(0, enemy.Health.Maximum);
 
                    //Skills:
@@ -67,7 +62,7 @@ namespace ConsoleSouls
                 case 1:
                     enemy = new Enemy("Bonehound");
                     enemy.Level = level;
-                    enemy.Health = new LevelValue<int>(PossibleHealth[Rnd.Get(0, Math.Min(5, level / 4))]);
+                    enemy.Health = new LevelValue<int>(Rnd.Get(2 + level * 3, Math.Min(60, 5 + level * 4)));
                     enemy.Armor = Rnd.Get(0, enemy.Health.Maximum);
 
                     //Skills:
@@ -99,7 +94,7 @@ namespace ConsoleSouls
                 case 2:
                     enemy = new Enemy("Dead Crow");
                     enemy.Level = level;
-                    enemy.Health = new LevelValue<int>(PossibleHealth[Rnd.Get(0, Math.Min(4, level / 5))]);
+                    enemy.Health = new LevelValue<int>(Rnd.Get(2 + level * 2, Math.Min(60, 4 + level * 3)));
                     enemy.Armor = Rnd.Get(0, enemy.Health.Maximum);
 
                     //Skills:

@@ -3,6 +3,8 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using JetBrains.Annotations;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
+using SadConsole;
 
 namespace ConsoleSouls
 {
@@ -18,7 +20,7 @@ namespace ConsoleSouls
         [NotNull] internal Room Room2 { get; }
         [NotNull] internal Room Room3 { get; }
 
-        public bool IsCompleted { get; }
+        public bool IsCompleted { get; private set; }
 
         static CrossRoad()
         {
@@ -40,6 +42,14 @@ namespace ConsoleSouls
             Room3.OnUpdate(gameTime);
 
             Title.OnUpdate(gameTime);
+
+            ProcessInput();
+        }
+
+        private void ProcessInput()
+        {
+            if (Global.KeyboardState.IsKeyPressed(Keys.NumPad1))
+                IsCompleted = true;
         }
 
         [NotNull]
