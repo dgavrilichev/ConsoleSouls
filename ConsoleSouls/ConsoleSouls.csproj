@@ -87,6 +87,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Combat.cs" />
     <Compile Include="CrossRoad.cs" />
     <Compile Include="Skills\DirectDamageEffect.cs" />
     <Compile Include="Skills\Effect.cs" />

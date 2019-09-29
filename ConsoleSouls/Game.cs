@@ -6,12 +6,14 @@ namespace ConsoleSouls
 {
     internal class Game : IDrawContent
     {
+        [NotNull] private readonly Player _player;
         private int _currentStage = 1;
         private IScene _currentScene;
 
         internal Game()
         {
-            _currentScene = CrossRoad.Generate(_currentStage);
+            _player = new Player();
+            _currentScene = CrossRoad.Generate(_currentStage, _player);
         }
 
         public void OnUpdate([NotNull] GameTime gameTime)
@@ -22,7 +24,7 @@ namespace ConsoleSouls
                 _currentScene.OnUpdate(gameTime);
             else
             {
-                _currentScene = CrossRoad.Generate(_currentStage++);
+                _currentScene = CrossRoad.Generate(_currentStage++, _player);
             }
         }
     }

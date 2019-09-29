@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using JetBrains.Annotations;
@@ -13,7 +14,7 @@ namespace ConsoleSouls
         private FightStage _fightStage = FightStage.NotStarted;
         [NotNull] internal List<Enemy> Enemies { get; }
 
-        private EnemyRoom([NotNull] Actor actor, char key, [NotNull] List<Enemy> enemies) : base(actor, key)
+        private EnemyRoom([NotNull] Actor actor, char key, [NotNull] List<Enemy> enemies, [NotNull] Player player) : base(actor, key, player)
         {
             Enemies = enemies;
         }
@@ -33,8 +34,10 @@ namespace ConsoleSouls
         }
 
         [NotNull]
-        internal static Room Create(int level, char key)
+        internal static Room Create(int level, char key, [NotNull] Player player)
         {
+            if(player == null) throw new ArgumentNullException(nameof(player));
+
             var actor = new Actor(Look)
             {
                 Foreground = Color.Gray,
@@ -48,7 +51,7 @@ namespace ConsoleSouls
                 enemies.Add(Enemy.Create(level, enemyIndex));
             }
 
-            return new EnemyRoom(actor, key, enemies);
+            return new EnemyRoom(actor, key, enemies, player);
         }
 
         public override void Interact()

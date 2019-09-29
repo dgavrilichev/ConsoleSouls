@@ -9,6 +9,7 @@ namespace ConsoleSouls
     {
         [NotNull] protected readonly Actor Actor;
         private readonly char _entranceKey;
+        [NotNull] protected readonly Player Player;
 
         internal Point Location
         {
@@ -16,10 +17,11 @@ namespace ConsoleSouls
             set => Actor.Location = value;
         }
 
-        protected Room([NotNull] Actor actor, char entranceKey)
+        protected Room([NotNull] Actor actor, char entranceKey, [NotNull] Player player)
         {
             Actor = actor ?? throw new ArgumentNullException(nameof(actor));
             _entranceKey = entranceKey;
+            Player = player;
         }
 
         internal void DrawEntrance()

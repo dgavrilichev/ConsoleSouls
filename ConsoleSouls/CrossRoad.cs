@@ -69,15 +69,17 @@ namespace ConsoleSouls
         }
 
         [NotNull]
-        internal static CrossRoad Generate(int currentStage)
+        internal static CrossRoad Generate(int currentStage, [NotNull] Player player)
         {
-            var room1 = EnemyRoom.Create(currentStage, '1');
+            if(player == null) throw new ArgumentNullException(nameof(player));
+
+            var room1 = EnemyRoom.Create(currentStage, '1', player);
             room1.Location = Room1Location;
             
-            var room2 = EnemyRoom.Create(currentStage, '2');
+            var room2 = EnemyRoom.Create(currentStage, '2', player);
             room2.Location = Room2Location;
 
-            var room3 = EnemyRoom.Create(currentStage, '3');
+            var room3 = EnemyRoom.Create(currentStage, '3', player);
             room3.Location = Room3Location;
 
             return new CrossRoad(room1, room2, room3);
