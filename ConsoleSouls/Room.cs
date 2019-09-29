@@ -33,5 +33,6 @@ namespace ConsoleSouls
         }
 
         public abstract void OnUpdate([NotNull] GameTime gameTime);
+        public abstract void Interact();
     }
 }

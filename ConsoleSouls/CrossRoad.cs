@@ -16,6 +16,8 @@ namespace ConsoleSouls
         private static readonly Point Room2Location = new Point(49, 7);
         private static readonly Point Room3Location = new Point(87, 7);
 
+        private bool _roomInteraction;
+
         [NotNull] internal Room Room1 { get; }
         [NotNull] internal Room Room2 { get; }
         [NotNull] internal Room Room3 { get; }
@@ -48,8 +50,22 @@ namespace ConsoleSouls
 
         private void ProcessInput()
         {
+            Room selectedRoom = null;
             if (Global.KeyboardState.IsKeyPressed(Keys.NumPad1))
-                IsCompleted = true;
+                selectedRoom = Room1;
+            if (Global.KeyboardState.IsKeyPressed(Keys.NumPad2))
+                selectedRoom = Room2;
+            if (Global.KeyboardState.IsKeyPressed(Keys.NumPad3))
+                selectedRoom = Room2;
+
+            if (selectedRoom != null)
+                InteractWithRoom(selectedRoom);
+        }
+
+        private void InteractWithRoom(Room selectedRoom)
+        {
+            _roomInteraction = true;
+            selectedRoom.Interact();
         }
 
         [NotNull]

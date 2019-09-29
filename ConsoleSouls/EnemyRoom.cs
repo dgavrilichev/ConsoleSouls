@@ -10,7 +10,7 @@ namespace ConsoleSouls
     internal class EnemyRoom : Room
     {
         private static readonly List<string> Look = Regex.Split(Res.Room, "\r\n|\r|\n").ToList();
-
+        private FightStage _fightStage = FightStage.NotStarted;
         [NotNull] internal List<Enemy> Enemies { get; }
 
         private EnemyRoom([NotNull] Actor actor, char key, [NotNull] List<Enemy> enemies) : base(actor, key)
@@ -20,9 +20,16 @@ namespace ConsoleSouls
 
         public override void OnUpdate(GameTime gameTime)
         {
-            Actor.OnUpdate(gameTime);
-            DrawEntrance();
-            DrawEnemies();
+            if (_fightStage == FightStage.Started)
+            {
+
+            }
+            else
+            {
+                Actor.OnUpdate(gameTime);
+                DrawEntrance();
+                DrawEnemiesOnCrossroad();
+            }
         }
 
         [NotNull]
@@ -44,7 +51,12 @@ namespace ConsoleSouls
             return new EnemyRoom(actor, key, enemies);
         }
 
-        private void DrawEnemies()
+        public override void Interact()
+        {
+            _fightStage = FightStage.Started;
+        }
+
+        private void DrawEnemiesOnCrossroad()
         {
             var console = Global.CurrentScreen;
             var (x, y) = new Point(Location.X , Location.Y + Actor.Size.Height + 3);
@@ -57,6 +69,13 @@ namespace ConsoleSouls
                 console.Print(x, y + index + 1, $"{index + 1})", Color.DarkRed);
                 console.Print(x + 3, y + index + 1, enemy.Name, new Color(210, 20, 20));
             }
+        }
+
+        private enum FightStage
+        {
+            NotStarted,
+            Started,
+            RewardScreen
         }
     }
 }
