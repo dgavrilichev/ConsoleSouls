@@ -3,25 +3,28 @@ using System;
 using System.Collections.Generic;
 using ConsoleSouls.Skills;
 using JetBrains.Annotations;
+using Microsoft.Xna.Framework;
 
 namespace ConsoleSouls
 {
-    internal sealed class Enemy
+    internal sealed class Enemy : IDrawContent
     {
-        internal string Name { get; }
+        private readonly int _order;
 
+        internal string Name { get; }
         internal int Level { get; set; }
         internal LevelValue<int> Health { get; set; }
         internal int Armor { get; set; }
         internal List<Skill> Skills { get; set; }
 
-        private Enemy(string name)
+        private Enemy(string name, int order)
         {
+            _order = order;
             Name = name;
         }
-
+       
         [NotNull]
-        internal static Enemy Create(int level)
+        internal static Enemy Create(int level, int order)
         {
             var randomValue = Rnd.Get(0, 2);
 
@@ -29,7 +32,7 @@ namespace ConsoleSouls
             switch (randomValue)
             {
                 case 0:
-                   enemy = new Enemy("Skeleton Swordsman");
+                   enemy = new Enemy("Skeleton Swordsman", order);
                    enemy.Level = level;
                    enemy.Health = new LevelValue<int>(Rnd.Get(2 + level * 4, Math.Min(60, 7 + level * 5)));
                    enemy.Armor = Rnd.Get(0, enemy.Health.Maximum);
@@ -60,7 +63,7 @@ namespace ConsoleSouls
                     break;
 
                 case 1:
-                    enemy = new Enemy("Bonehound");
+                    enemy = new Enemy("Bonehound", order);
                     enemy.Level = level;
                     enemy.Health = new LevelValue<int>(Rnd.Get(2 + level * 3, Math.Min(60, 5 + level * 4)));
                     enemy.Armor = Rnd.Get(0, enemy.Health.Maximum);
@@ -92,7 +95,7 @@ namespace ConsoleSouls
                     break;
 
                 case 2:
-                    enemy = new Enemy("Dead Crow");
+                    enemy = new Enemy("Dead Crow", order);
                     enemy.Level = level;
                     enemy.Health = new LevelValue<int>(Rnd.Get(2 + level * 2, Math.Min(60, 4 + level * 3)));
                     enemy.Armor = Rnd.Get(0, enemy.Health.Maximum);
@@ -128,6 +131,11 @@ namespace ConsoleSouls
             }
 
             return enemy;
+        }
+
+        public void OnUpdate(GameTime gameTime)
+        {
+            throw new NotImplementedException();
         }
     }
 }

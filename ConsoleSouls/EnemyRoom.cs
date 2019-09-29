@@ -35,11 +35,11 @@ namespace ConsoleSouls
 
             var enemiesCount = Rnd.Get(1, 3);
 
-            var enemies = Enumerable
-                .Range(1, enemiesCount)
-                .ToList()
-                .Select(arg => Enemy.Create(level))
-                .ToList();
+            var enemies = new List<Enemy>();
+            for (var enemyIndex = 1; enemyIndex <= enemiesCount; enemyIndex++)
+            {
+                enemies.Add(Enemy.Create(level, enemyIndex));
+            }
 
             return new EnemyRoom(actor, key, enemies);
         }
