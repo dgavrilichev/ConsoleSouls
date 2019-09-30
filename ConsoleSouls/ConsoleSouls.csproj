@@ -89,6 +89,7 @@
   <ItemGroup>
     <Compile Include="Combat.cs" />
     <Compile Include="CrossRoad.cs" />
+    <Compile Include="ProgressBar.cs" />
     <Compile Include="Skills\DirectDamageEffect.cs" />
     <Compile Include="Skills\Effect.cs" />
     <Compile Include="Enemy.cs" />
