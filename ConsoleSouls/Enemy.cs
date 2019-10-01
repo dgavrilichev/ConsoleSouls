@@ -132,10 +132,5 @@ namespace ConsoleSouls
 
             return enemy;
         }
-
-        public void OnUpdate(GameTime gameTime)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
