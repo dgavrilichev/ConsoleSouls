@@ -1,13 +1,11 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using ConsoleSouls.Skills;
 using JetBrains.Annotations;
-using Microsoft.Xna.Framework;
 
 namespace ConsoleSouls
 {
-    internal sealed class Enemy : IDrawContent
+    internal sealed class Enemy
     {
         private readonly int _order;
 
