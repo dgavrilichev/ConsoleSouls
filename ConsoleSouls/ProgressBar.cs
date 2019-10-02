@@ -26,23 +26,23 @@ namespace ConsoleSouls
 
         public void OnUpdate(GameTime gameTime)
         {
-            var points = _value.Maximum / _width * _value.Current;
+            var points = _width /_value.Maximum * _value.Current;
             var integerPoints = Convert.ToInt32(Math.Truncate(points));
             var decimalPart = points - integerPoints;
 
             var symbol = 32;
             if (decimalPart > 0.8)
                 symbol = Full;
-            if (decimalPart > 0.46)
+            else if (decimalPart > 0.46)
                 symbol = Medium;
-            if (decimalPart > 0.13)
+            else if (decimalPart > 0.13)
                 symbol = Light;
 
             var console = Global.CurrentScreen;
 
             for (var index = 0; index < integerPoints; index++)           
                 console.SetGlyph(_position.X + index, _position.Y, Full, _color);
-
+           
             console.SetGlyph(_position.X + integerPoints, _position.Y, symbol, _color);
         }
     }
