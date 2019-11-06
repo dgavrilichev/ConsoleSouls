@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\Da
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Test", "Common.Test\Common.Test.csproj", "{69A86B3E-AEC1-478A-B245-69D42755BEC0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LineageClientWpf", "LineageClientWpf\LineageClientWpf.csproj", "{8BA45558-533B-4AA7-AABF-188AB5571B28}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{69A86B3E-AEC1-478A-B245-69D42755BEC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{69A86B3E-AEC1-478A-B245-69D42755BEC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{69A86B3E-AEC1-478A-B245-69D42755BEC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BA45558-533B-4AA7-AABF-188AB5571B28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BA45558-533B-4AA7-AABF-188AB5571B28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BA45558-533B-4AA7-AABF-188AB5571B28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BA45558-533B-4AA7-AABF-188AB5571B28}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
