@@ -49,5 +49,15 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{2E805E47-98F1-4464-ADAA-EA3DAD29697E}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LineageServerCommon\LineageServerCommon.csproj">
+      <Project>{C83B080E-4D95-45CB-A924-94227A2920BF}</Project>
+      <Name>LineageServerCommon</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
