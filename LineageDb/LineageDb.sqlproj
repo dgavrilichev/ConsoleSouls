@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\Users.sql" />
+    <Build Include="Tables\Characters.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="LineageDb.publish.xml" />
