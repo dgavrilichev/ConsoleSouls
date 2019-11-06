@@ -6,7 +6,7 @@ using JetBrains.Annotations;
 
 namespace LineageServerCommon
 {
-    public sealed class ServerMain
+    public sealed class ServerMain : IDisposable
     {
         [NotNull] private readonly ILogger _logger;
 
@@ -15,13 +15,24 @@ namespace LineageServerCommon
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        public async Task Start(CancellationToken cancellationToken)
+        public async Task StartAsync(CancellationToken cancellationToken)
         {
             _logger.WriteInformation($"Starting {nameof(ServerMain)}.");
 
-            await Task.Delay(-1, cancellationToken);
+            try
+            {
+                await Task.Delay(-1, cancellationToken);
+            }
+            catch (TaskCanceledException)
+            {
+                _logger.WriteDebugInformation("Main task was canceled.");
+            }
 
             _logger.WriteInformation($"{nameof(ServerMain)} stopped.");
+        }
+
+        public void Dispose()
+        {
         }
     }
 }
