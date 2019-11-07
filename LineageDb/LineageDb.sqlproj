@@ -68,4 +68,7 @@
   <ItemGroup>
     <None Include="LineageDb.publish.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="LineageDb.refactorlog" />
+  </ItemGroup>
 </Project>
