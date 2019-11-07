@@ -64,6 +64,8 @@
   <ItemGroup>
     <Build Include="Tables\Users.sql" />
     <Build Include="Tables\Characters.sql" />
+    <Build Include="Tables\Locations.sql" />
+    <Build Include="Tables\Creeps.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="LineageDb.publish.xml" />
