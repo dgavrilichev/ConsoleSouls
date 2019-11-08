@@ -11,6 +11,10 @@
         <EntityTypeShape EntityType="LineageDbModel.Creep" Width="1.5" PointX="3.75" PointY="2.75" />
         <EntityTypeShape EntityType="LineageDbModel.Location" Width="1.5" PointX="5.75" PointY="0.75" />
         <EntityTypeShape EntityType="LineageDbModel.Item" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="LineageDbModel.DropTableItem" Width="1.5" PointX="8.25" PointY="4.125" />
+        <EntityTypeShape EntityType="LineageDbModel.DropTable" Width="1.5" PointX="6" PointY="4.125" />
+        <AssociationConnector Association="LineageDbModel.FK_DropTable_Creep" />
+        <AssociationConnector Association="LineageDbModel.FK_DropTableItems_DropTable" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

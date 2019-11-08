@@ -14,6 +14,12 @@ namespace DataAccess
     
     public partial class Creep
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Creep()
+        {
+            this.DropTables = new HashSet<DropTable>();
+        }
+    
         public int Id { get; set; }
         public string Name { get; set; }
         public int Behaviour { get; set; }
@@ -32,5 +38,8 @@ namespace DataAccess
         public double BonusAccuracy { get; set; }
         public int AttackSpeed { get; set; }
         public int Range { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DropTable> DropTables { get; set; }
     }
 }

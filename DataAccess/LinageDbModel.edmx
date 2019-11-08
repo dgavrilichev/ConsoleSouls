@@ -44,6 +44,23 @@
           <Property Name="AttackSpeed" Type="int" Nullable="false" />
           <Property Name="Range" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="DropTableItems">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DropTableId" Type="int" Nullable="false" />
+          <Property Name="ItemId" Type="int" Nullable="false" />
+          <Property Name="Chance" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DropTables">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CreepId" Type="int" Nullable="false" />
+          <Property Name="Chance" Type="float" Nullable="false" />
+        </EntityType>
         <EntityType Name="Items">
           <Key>
             <PropertyRef Name="Id" />
@@ -57,7 +74,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Users">
@@ -69,13 +86,47 @@
           <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
         </EntityType>
+        <Association Name="FK_DropTable_Creep">
+          <End Role="Creeps" Type="Self.Creeps" Multiplicity="1" />
+          <End Role="DropTables" Type="Self.DropTables" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Creeps">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DropTables">
+              <PropertyRef Name="CreepId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DropTableItems_DropTable">
+          <End Role="DropTables" Type="Self.DropTables" Multiplicity="1" />
+          <End Role="DropTableItems" Type="Self.DropTableItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DropTables">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DropTableItems">
+              <PropertyRef Name="DropTableId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="LineageDbModelStoreContainer">
           <EntitySet Name="__RefactorLog" EntityType="Self.__RefactorLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Characters" EntityType="Self.Characters" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Creeps" EntityType="Self.Creeps" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DropTableItems" EntityType="Self.DropTableItems" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DropTables" EntityType="Self.DropTables" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Items" EntityType="Self.Items" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Locations" EntityType="Self.Locations" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_DropTable_Creep" Association="Self.FK_DropTable_Creep">
+            <End Role="Creeps" EntitySet="Creeps" />
+            <End Role="DropTables" EntitySet="DropTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DropTableItems_DropTable" Association="Self.FK_DropTableItems_DropTable">
+            <End Role="DropTables" EntitySet="DropTables" />
+            <End Role="DropTableItems" EntitySet="DropTableItems" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -97,6 +148,16 @@
           <EntitySet Name="Creeps" EntityType="LineageDbModel.Creep" />
           <EntitySet Name="Locations" EntityType="LineageDbModel.Location" />
           <EntitySet Name="Items" EntityType="LineageDbModel.Item" />
+          <EntitySet Name="DropTableItems" EntityType="LineageDbModel.DropTableItem" />
+          <EntitySet Name="DropTables" EntityType="LineageDbModel.DropTable" />
+          <AssociationSet Name="FK_DropTable_Creep" Association="LineageDbModel.FK_DropTable_Creep">
+            <End Role="Creep" EntitySet="Creeps" />
+            <End Role="DropTable" EntitySet="DropTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DropTableItems_DropTable" Association="LineageDbModel.FK_DropTableItems_DropTable">
+            <End Role="DropTable" EntitySet="DropTables" />
+            <End Role="DropTableItem" EntitySet="DropTableItems" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="C__RefactorLog">
           <Key>
@@ -136,6 +197,7 @@
           <Property Name="BonusAccuracy" Type="Double" Nullable="false" />
           <Property Name="AttackSpeed" Type="Int32" Nullable="false" />
           <Property Name="Range" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DropTables" Relationship="LineageDbModel.FK_DropTable_Creep" FromRole="Creep" ToRole="DropTable" />
         </EntityType>
         <EntityType Name="Location">
           <Key>
@@ -153,6 +215,50 @@
           <Property Name="ItemType" Type="Int32" Nullable="false" />
           <Property Name="Data" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="DropTableItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DropTableId" Type="Int32" Nullable="false" />
+          <Property Name="ItemId" Type="Int32" Nullable="false" />
+          <Property Name="Chance" Type="Double" Nullable="false" />
+          <NavigationProperty Name="DropTable" Relationship="LineageDbModel.FK_DropTableItems_DropTable" FromRole="DropTableItem" ToRole="DropTable" />
+        </EntityType>
+        <EntityType Name="DropTable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CreepId" Type="Int32" Nullable="false" />
+          <Property Name="Chance" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Creep" Relationship="LineageDbModel.FK_DropTable_Creep" FromRole="DropTable" ToRole="Creep" />
+          <NavigationProperty Name="DropTableItems" Relationship="LineageDbModel.FK_DropTableItems_DropTable" FromRole="DropTable" ToRole="DropTableItem" />
+        </EntityType>
+        <Association Name="FK_DropTable_Creep">
+          <End Type="LineageDbModel.Creep" Role="Creep" Multiplicity="1" />
+          <End Type="LineageDbModel.DropTable" Role="DropTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Creep">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DropTable">
+              <PropertyRef Name="CreepId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DropTableItems_DropTable">
+          <End Type="LineageDbModel.DropTable" Role="DropTable" Multiplicity="1" />
+          <End Type="LineageDbModel.DropTableItem" Role="DropTableItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DropTable">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DropTableItem">
+              <PropertyRef Name="DropTableId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -225,6 +331,25 @@
                 <ScalarProperty Name="Data" ColumnName="Data" />
                 <ScalarProperty Name="ItemType" ColumnName="ItemType" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DropTableItems">
+            <EntityTypeMapping TypeName="LineageDbModel.DropTableItem">
+              <MappingFragment StoreEntitySet="DropTableItems">
+                <ScalarProperty Name="Chance" ColumnName="Chance" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="DropTableId" ColumnName="DropTableId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DropTables">
+            <EntityTypeMapping TypeName="LineageDbModel.DropTable">
+              <MappingFragment StoreEntitySet="DropTables">
+                <ScalarProperty Name="Chance" ColumnName="Chance" />
+                <ScalarProperty Name="CreepId" ColumnName="CreepId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

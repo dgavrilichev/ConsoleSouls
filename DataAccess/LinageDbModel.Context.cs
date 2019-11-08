@@ -31,5 +31,7 @@ namespace DataAccess
         public virtual DbSet<Creep> Creeps { get; set; }
         public virtual DbSet<Location> Locations { get; set; }
         public virtual DbSet<Item> Items { get; set; }
+        public virtual DbSet<DropTableItem> DropTableItems { get; set; }
+        public virtual DbSet<DropTable> DropTables { get; set; }
     }
 }

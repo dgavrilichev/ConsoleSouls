@@ -60,6 +60,12 @@
       <DependentUpon>LinageDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Db.cs" />
+    <Compile Include="DropTable.cs">
+      <DependentUpon>LinageDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DropTableItem.cs">
+      <DependentUpon>LinageDbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Item.cs">
       <DependentUpon>LinageDbModel.tt</DependentUpon>
     </Compile>
