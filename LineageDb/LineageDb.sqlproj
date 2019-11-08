@@ -68,6 +68,7 @@
     <Build Include="Tables\Creeps.sql" />
     <Build Include="Tables\Items.sql" />
     <Build Include="Tables\DropTables.sql" />
+    <Build Include="Tables\DropTableItems.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="LineageDb.publish.xml" />
