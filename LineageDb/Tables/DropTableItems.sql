@@ -4,5 +4,6 @@
     [DropTableId] INT NOT NULL,
 	[ItemId] INT NOT NULL,
 	[Chance] FLOAT NOT NULL, 
-    CONSTRAINT [PK_DropTableItems] PRIMARY KEY CLUSTERED ([Id] ASC)
+    CONSTRAINT [PK_DropTableItems] PRIMARY KEY CLUSTERED ([Id] ASC),
+	CONSTRAINT [FK_DropTableItems_DropTable] FOREIGN KEY ([DropTableId]) REFERENCES [DropTables]([Id])
 )
