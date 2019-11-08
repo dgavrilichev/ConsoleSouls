@@ -51,12 +51,35 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Db.cs" />
-    <Compile Include="LineageDbModel.cs" />
+    <Compile Include="LinageDbModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LinageDbModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LinageDbModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LinageDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LinageDbModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LinageDbModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="User.cs" />
+    <Compile Include="User.cs">
+      <DependentUpon>LinageDbModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <EntityDeploy Include="LinageDbModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>LinageDbModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="LinageDbModel.edmx.diagram">
+      <DependentUpon>LinageDbModel.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -64,6 +87,21 @@
       <Project>{2E805E47-98F1-4464-ADAA-EA3DAD29697E}</Project>
       <Name>Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="LinageDbModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LinageDbModel.edmx</DependentUpon>
+      <LastGenOutput>LinageDbModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="LinageDbModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LinageDbModel.edmx</DependentUpon>
+      <LastGenOutput>LinageDbModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
