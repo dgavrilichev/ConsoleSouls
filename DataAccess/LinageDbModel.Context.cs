@@ -30,5 +30,6 @@ namespace DataAccess
         public virtual DbSet<Character> Characters { get; set; }
         public virtual DbSet<Creep> Creeps { get; set; }
         public virtual DbSet<Location> Locations { get; set; }
+        public virtual DbSet<Item> Items { get; set; }
     }
 }

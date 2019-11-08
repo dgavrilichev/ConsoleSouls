@@ -60,6 +60,9 @@
       <DependentUpon>LinageDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Db.cs" />
+    <Compile Include="Item.cs">
+      <DependentUpon>LinageDbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="LinageDbModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
