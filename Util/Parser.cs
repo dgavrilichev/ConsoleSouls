@@ -8,7 +8,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Util
 {
     [TestClass]
-    public class UnitTest1
+    public class Parser
     {
         [TestMethod]
         public void ParseItems()
