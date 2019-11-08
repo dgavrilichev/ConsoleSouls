@@ -11,6 +11,36 @@ namespace Util
     public class UnitTest1
     {
         [TestMethod]
+        public void ParseItems()
+        {
+            var d = new DirectoryInfo(@"D:\DbItems");//Assuming Test is your Folder
+            var files = d.GetFiles(); //Getting Text files
+
+            var types = new List<string>();
+
+            foreach (var file in files)
+            {
+                var doc = new XmlDocument();
+                doc.Load(file.FullName);
+
+                var items = doc.GetElementsByTagName("list")[0];
+                foreach (XmlNode item in items.ChildNodes)
+                {
+                    if (item.Attributes?["type"] != null)
+                    {
+                        types.Add(item.Attributes["type"].Value);
+                    }
+                }
+            }
+
+            Console.WriteLine($"Total items: {types.Count}");
+            foreach (var itemType in types.Distinct())
+            {
+                Console.WriteLine(itemType);
+            }
+        }
+
+        [TestMethod]
         public void ParseCreeps()
         {
             var d = new DirectoryInfo(@"D:\MonsterDb");//Assuming Test is your Folder
