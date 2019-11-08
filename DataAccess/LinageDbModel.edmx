@@ -4,7 +4,53 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="LineageDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="LineageDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__RefactorLog">
+          <Key>
+            <PropertyRef Name="OperationKey" />
+          </Key>
+          <Property Name="OperationKey" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Characters">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Experience" Type="int" Nullable="false" />
+          <Property Name="Level" Type="int" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Creeps">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Behaviour" Type="int" Nullable="false" />
+          <Property Name="Experience" Type="int" Nullable="false" />
+          <Property Name="Hp" Type="int" Nullable="false" />
+          <Property Name="Str" Type="int" Nullable="false" />
+          <Property Name="Dex" Type="int" Nullable="false" />
+          <Property Name="Con" Type="int" Nullable="false" />
+          <Property Name="Int" Type="int" Nullable="false" />
+          <Property Name="Wit" Type="int" Nullable="false" />
+          <Property Name="Men" Type="int" Nullable="false" />
+          <Property Name="Pattack" Type="float" Nullable="false" />
+          <Property Name="Mattack" Type="float" Nullable="false" />
+          <Property Name="Pdef" Type="float" Nullable="false" />
+          <Property Name="Mdef" Type="float" Nullable="false" />
+          <Property Name="BonusAccuracy" Type="float" Nullable="false" />
+          <Property Name="AttackSpeed" Type="int" Nullable="false" />
+          <Property Name="Range" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Locations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="Id" />
@@ -15,10 +61,13 @@
           <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
         </EntityType>
         <EntityContainer Name="LineageDbModelStoreContainer">
+          <EntitySet Name="__RefactorLog" EntityType="Self.__RefactorLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Characters" EntityType="Self.Characters" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Creeps" EntityType="Self.Creeps" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Locations" EntityType="Self.Locations" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LineageDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -33,7 +82,57 @@
         </EntityType>
         <EntityContainer Name="LineageDbEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="C__RefactorLog" EntityType="LineageDbModel.C__RefactorLog" />
+          <EntitySet Name="Characters" EntityType="LineageDbModel.Character" />
+          <EntitySet Name="Creeps" EntityType="LineageDbModel.Creep" />
+          <EntitySet Name="Locations" EntityType="LineageDbModel.Location" />
         </EntityContainer>
+        <EntityType Name="C__RefactorLog">
+          <Key>
+            <PropertyRef Name="OperationKey" />
+          </Key>
+          <Property Name="OperationKey" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Character">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Experience" Type="Int32" Nullable="false" />
+          <Property Name="Level" Type="Int32" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
+        </EntityType>
+        <EntityType Name="Creep">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Behaviour" Type="Int32" Nullable="false" />
+          <Property Name="Experience" Type="Int32" Nullable="false" />
+          <Property Name="Hp" Type="Int32" Nullable="false" />
+          <Property Name="Str" Type="Int32" Nullable="false" />
+          <Property Name="Dex" Type="Int32" Nullable="false" />
+          <Property Name="Con" Type="Int32" Nullable="false" />
+          <Property Name="Int" Type="Int32" Nullable="false" />
+          <Property Name="Wit" Type="Int32" Nullable="false" />
+          <Property Name="Men" Type="Int32" Nullable="false" />
+          <Property Name="Pattack" Type="Double" Nullable="false" />
+          <Property Name="Mattack" Type="Double" Nullable="false" />
+          <Property Name="Pdef" Type="Double" Nullable="false" />
+          <Property Name="Mdef" Type="Double" Nullable="false" />
+          <Property Name="BonusAccuracy" Type="Double" Nullable="false" />
+          <Property Name="AttackSpeed" Type="Int32" Nullable="false" />
+          <Property Name="Range" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -47,6 +146,56 @@
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C__RefactorLog">
+            <EntityTypeMapping TypeName="LineageDbModel.C__RefactorLog">
+              <MappingFragment StoreEntitySet="__RefactorLog">
+                <ScalarProperty Name="OperationKey" ColumnName="OperationKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Characters">
+            <EntityTypeMapping TypeName="LineageDbModel.Character">
+              <MappingFragment StoreEntitySet="Characters">
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="Experience" ColumnName="Experience" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Creeps">
+            <EntityTypeMapping TypeName="LineageDbModel.Creep">
+              <MappingFragment StoreEntitySet="Creeps">
+                <ScalarProperty Name="Range" ColumnName="Range" />
+                <ScalarProperty Name="AttackSpeed" ColumnName="AttackSpeed" />
+                <ScalarProperty Name="BonusAccuracy" ColumnName="BonusAccuracy" />
+                <ScalarProperty Name="Mdef" ColumnName="Mdef" />
+                <ScalarProperty Name="Pdef" ColumnName="Pdef" />
+                <ScalarProperty Name="Mattack" ColumnName="Mattack" />
+                <ScalarProperty Name="Pattack" ColumnName="Pattack" />
+                <ScalarProperty Name="Men" ColumnName="Men" />
+                <ScalarProperty Name="Wit" ColumnName="Wit" />
+                <ScalarProperty Name="Int" ColumnName="Int" />
+                <ScalarProperty Name="Con" ColumnName="Con" />
+                <ScalarProperty Name="Dex" ColumnName="Dex" />
+                <ScalarProperty Name="Str" ColumnName="Str" />
+                <ScalarProperty Name="Hp" ColumnName="Hp" />
+                <ScalarProperty Name="Experience" ColumnName="Experience" />
+                <ScalarProperty Name="Behaviour" ColumnName="Behaviour" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Locations">
+            <EntityTypeMapping TypeName="LineageDbModel.Location">
+              <MappingFragment StoreEntitySet="Locations">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

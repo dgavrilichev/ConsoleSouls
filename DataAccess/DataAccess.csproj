@@ -50,6 +50,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Character.cs">
+      <DependentUpon>LinageDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Creep.cs">
+      <DependentUpon>LinageDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="C__RefactorLog.cs">
+      <DependentUpon>LinageDbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Db.cs" />
     <Compile Include="LinageDbModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -65,6 +74,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>LinageDbModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Location.cs">
+      <DependentUpon>LinageDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User.cs">

@@ -26,5 +26,9 @@ namespace DataAccess
         }
     
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<C__RefactorLog> C__RefactorLog { get; set; }
+        public virtual DbSet<Character> Characters { get; set; }
+        public virtual DbSet<Creep> Creeps { get; set; }
+        public virtual DbSet<Location> Locations { get; set; }
     }
 }

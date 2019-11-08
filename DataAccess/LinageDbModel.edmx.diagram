@@ -6,6 +6,10 @@
     <edmx:Diagrams>
       <Diagram DiagramId="2e667eece1fe4d50ac004f82440103d5" Name="Diagram1">
         <EntityTypeShape EntityType="LineageDbModel.User" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LineageDbModel.C__RefactorLog" Width="1.5" PointX="3.75" PointY="0.75" />
+        <EntityTypeShape EntityType="LineageDbModel.Character" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="LineageDbModel.Creep" Width="1.5" PointX="3.75" PointY="2.75" />
+        <EntityTypeShape EntityType="LineageDbModel.Location" Width="1.5" PointX="5.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
