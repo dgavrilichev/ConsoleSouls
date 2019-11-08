@@ -20,5 +20,6 @@ namespace DataAccess
         public double Chance { get; set; }
     
         public virtual DropTable DropTable { get; set; }
+        public virtual Item Item { get; set; }
     }
 }

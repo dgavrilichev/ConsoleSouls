@@ -15,6 +15,7 @@
         <EntityTypeShape EntityType="LineageDbModel.DropTable" Width="1.5" PointX="6" PointY="4.125" />
         <AssociationConnector Association="LineageDbModel.FK_DropTable_Creep" />
         <AssociationConnector Association="LineageDbModel.FK_DropTableItems_DropTable" />
+        <AssociationConnector Association="LineageDbModel.FK_DropTableItems_Item" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

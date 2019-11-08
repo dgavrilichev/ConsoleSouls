@@ -110,6 +110,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_DropTableItems_Item">
+          <End Role="Items" Type="Self.Items" Multiplicity="1" />
+          <End Role="DropTableItems" Type="Self.DropTableItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Items">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DropTableItems">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="LineageDbModelStoreContainer">
           <EntitySet Name="__RefactorLog" EntityType="Self.__RefactorLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Characters" EntityType="Self.Characters" Schema="dbo" store:Type="Tables" />
@@ -125,6 +137,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_DropTableItems_DropTable" Association="Self.FK_DropTableItems_DropTable">
             <End Role="DropTables" EntitySet="DropTables" />
+            <End Role="DropTableItems" EntitySet="DropTableItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DropTableItems_Item" Association="Self.FK_DropTableItems_Item">
+            <End Role="Items" EntitySet="Items" />
             <End Role="DropTableItems" EntitySet="DropTableItems" />
           </AssociationSet>
         </EntityContainer>
@@ -156,6 +172,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_DropTableItems_DropTable" Association="LineageDbModel.FK_DropTableItems_DropTable">
             <End Role="DropTable" EntitySet="DropTables" />
+            <End Role="DropTableItem" EntitySet="DropTableItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DropTableItems_Item" Association="LineageDbModel.FK_DropTableItems_Item">
+            <End Role="Item" EntitySet="Items" />
             <End Role="DropTableItem" EntitySet="DropTableItems" />
           </AssociationSet>
         </EntityContainer>
@@ -214,6 +234,7 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ItemType" Type="Int32" Nullable="false" />
           <Property Name="Data" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DropTableItems" Relationship="LineageDbModel.FK_DropTableItems_Item" FromRole="Item" ToRole="DropTableItem" />
         </EntityType>
         <EntityType Name="DropTableItem">
           <Key>
@@ -224,6 +245,7 @@
           <Property Name="ItemId" Type="Int32" Nullable="false" />
           <Property Name="Chance" Type="Double" Nullable="false" />
           <NavigationProperty Name="DropTable" Relationship="LineageDbModel.FK_DropTableItems_DropTable" FromRole="DropTableItem" ToRole="DropTable" />
+          <NavigationProperty Name="Item" Relationship="LineageDbModel.FK_DropTableItems_Item" FromRole="DropTableItem" ToRole="Item" />
         </EntityType>
         <EntityType Name="DropTable">
           <Key>
@@ -256,6 +278,18 @@
             </Principal>
             <Dependent Role="DropTableItem">
               <PropertyRef Name="DropTableId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DropTableItems_Item">
+          <End Type="LineageDbModel.Item" Role="Item" Multiplicity="1" />
+          <End Type="LineageDbModel.DropTableItem" Role="DropTableItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DropTableItem">
+              <PropertyRef Name="ItemId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>

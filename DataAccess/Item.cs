@@ -14,9 +14,18 @@ namespace DataAccess
     
     public partial class Item
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Item()
+        {
+            this.DropTableItems = new HashSet<DropTableItem>();
+        }
+    
         public int Id { get; set; }
         public string Name { get; set; }
         public int ItemType { get; set; }
         public string Data { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DropTableItem> DropTableItems { get; set; }
     }
 }
