@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml;
+using DataAccess;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Util
@@ -16,7 +17,7 @@ namespace Util
             var d = new DirectoryInfo(@"D:\DbItems");//Assuming Test is your Folder
             var files = d.GetFiles(); //Getting Text files
 
-            var types = new List<string>();
+            var types = new List<Item>();
 
             foreach (var file in files)
             {
@@ -28,7 +29,20 @@ namespace Util
                 {
                     if (item.Attributes?["type"] != null)
                     {
-                        types.Add(item.Attributes["type"].Value);
+                        switch (item.Attributes["type"].Value)
+                        {
+                            case "Weapon":
+                                break;
+
+                            case "Armor":
+                                break;
+
+                            case "EtcItem":
+                                break;
+
+                            default:
+                                throw new InvalidOperationException("Unexpected value");
+                        }
                     }
                 }
             }
