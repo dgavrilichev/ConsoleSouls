@@ -69,6 +69,8 @@
     <Build Include="Tables\Items.sql" />
     <Build Include="Tables\DropTables.sql" />
     <Build Include="Tables\DropTableItems.sql" />
+    <Build Include="Tables\Armor.sql" />
+    <Build Include="Tables\ArmorType.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="LineageDb.publish.xml" />

@@ -29,22 +29,32 @@ namespace Util
                 {
                     if (item.Attributes?["type"] != null)
                     {
+                        var dbItem = new Item();
+
                         switch (item.Attributes["type"].Value)
                         {
                             case "Weapon":
+                                dbItem.ItemType = 1;
                                 break;
 
                             case "Armor":
+                                dbItem.ItemType = 2;
                                 break;
 
                             case "EtcItem":
+                                dbItem.ItemType = 3;
                                 break;
 
                             default:
                                 throw new InvalidOperationException("Unexpected value");
                         }
+
+                        dbItem.Name = item.Attributes["name"].Value;
+                        dbItem.Data = item.InnerXml;
                     }
                 }
+
+   
             }
 
             Console.WriteLine($"Total items: {types.Count}");
